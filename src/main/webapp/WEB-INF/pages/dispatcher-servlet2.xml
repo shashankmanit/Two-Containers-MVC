@@ -1,0 +1,47 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans.xsd">
+      
+      
+      <!-- Mapping Configuration -->
+	<bean
+		class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"/>
+      
+ 
+	<!-- UrlHandlerMapping -->
+	<bean id="urlMapping"
+		class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+		<property name="mappings">
+			<props>
+				<prop key="welcome.php">pc1</prop>
+				<prop key="wish.php">wc</prop>
+				<prop key="contact_us.php">pc2</prop>
+			</props>
+		</property>
+	</bean>
+ 
+
+	<!-- Controller -->
+	<bean id="wc" class="com.shashank.controller.WishController">
+		<property name="service" ref="wService">
+		</property>
+	</bean>
+
+	<bean id="pc1"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="welcome" />
+	</bean>
+
+	<bean id="pc2"
+		class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+		<property name="viewName" value="contact_us"></property>
+	</bean>
+ 
+	<!-- View REsolver -->
+	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/pages/" />
+		<property name="suffix" value=".jsp" />
+	</bean>
+</beans>
