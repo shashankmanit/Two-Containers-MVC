@@ -17,7 +17,7 @@ import com.shashank.service.WishService;
 public class WishController extends AbstractController {
 	@Inject
 	private WishService service;
-
+ 
 	public void setService(WishService service) {
 		System.out.println("WishController::    setService()");
 		this.service = service;
